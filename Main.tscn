@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dtg25qxu37ej3"]
+
+[ext_resource type="Script" uid="uid://djklnht7seoqh" path="res://main.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://Obstacle.tscn" id="3_obstacle"]
+[ext_resource type="PackedScene" path="res://Coin.tscn" id="4_coin"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.451, 0.784, 0.918, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.918, 0.961, 1, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="road_mat"]
+albedo_color = Color(0.208, 0.251, 0.322, 1)
+
+[sub_resource type="BoxMesh" id="road_mesh"]
+size = Vector3(11, 0.28, 61)
+
+[sub_resource type="StandardMaterial3D" id="line_mat"]
+albedo_color = Color(0.973, 0.945, 0.796, 1)
+
+[sub_resource type="BoxMesh" id="line_mesh"]
+size = Vector3(0.12, 0.03, 3)
+
+[sub_resource type="StandardMaterial3D" id="building_mat"]
+albedo_color = Color(0.635, 0.722, 0.82, 1)
+
+[sub_resource type="BoxMesh" id="building_mesh"]
+size = Vector3(4, 5, 4)
+
+[node name="LateAgainDemo" type="Node3D" unique_id=238442263]
+script = ExtResource("1_script")
+obstacle_scene = ExtResource("3_obstacle")
+coin_scene = ExtResource("4_coin")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=654121469]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=935309922]
+transform = Transform3D(0.88294756, 0.36994863, -0.2890356, 0, 0.6156615, 0.7880107, 0.46947157, -0.6957722, 0.5435968, 0, 0, 0)
+light_energy = 1.4
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=613135169]
+transform = Transform3D(-0.999668, 0.007961981, -0.024504334, 8.323711e-09, 0.95105654, 0.30901706, 0.025765419, 0.30891448, -0.9507409, 0, 6.4, -5.80029)
+
+[node name="Road" type="MeshInstance3D" parent="." unique_id=1896565630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 23)
+material_override = SubResource("road_mat")
+mesh = SubResource("road_mesh")
+
+[node name="LaneMarks" type="Node3D" parent="." unique_id=1169075107]
+
+[node name="Left1" type="MeshInstance3D" parent="LaneMarks" unique_id=329784735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.02, 2)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Left2" type="MeshInstance3D" parent="LaneMarks" unique_id=1085370971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.02, 10)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Left3" type="MeshInstance3D" parent="LaneMarks" unique_id=2096983515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.02, 18)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Left4" type="MeshInstance3D" parent="LaneMarks" unique_id=188381073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.02, 26)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Right1" type="MeshInstance3D" parent="LaneMarks" unique_id=1396613888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.02, 2)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Right2" type="MeshInstance3D" parent="LaneMarks" unique_id=875223419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.02, 10)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Right3" type="MeshInstance3D" parent="LaneMarks" unique_id=145402294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.02, 18)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Right4" type="MeshInstance3D" parent="LaneMarks" unique_id=1491859260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.02, 26)
+material_override = SubResource("line_mat")
+mesh = SubResource("line_mesh")
+
+[node name="Buildings" type="Node3D" parent="." unique_id=267108269]
+
+[node name="LeftBuilding" type="MeshInstance3D" parent="Buildings" unique_id=145463707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.4, 8)
+material_override = SubResource("building_mat")
+mesh = SubResource("building_mesh")
+
+[node name="RightBuilding" type="MeshInstance3D" parent="Buildings" unique_id=894892822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2.4, 15)
+material_override = SubResource("building_mat")
+mesh = SubResource("building_mesh")
+
+[node name="Player" parent="." unique_id=821120648 instance=ExtResource("2_player")]
+
+[node name="MovingObjects" type="Node3D" parent="." unique_id=2056798626]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=192187102]
+
+[node name="Title" type="Label" parent="UI" unique_id=852636943]
+offset_left = 28.0
+offset_top = 22.0
+theme_override_colors/font_color = Color(1, 0.957, 0.749, 1)
+theme_override_font_sizes/font_size = 30
+text = "LATE AGAIN!"
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1766666208]
+offset_left = 30.0
+offset_top = 64.0
+theme_override_font_sizes/font_size = 22
+
+[node name="Help" type="Label" parent="UI" unique_id=339625746]
+offset_left = 28.0
+offset_top = 680.0
+theme_override_font_sizes/font_size = 18
+text = "← → เปลี่ยนเลน     Space / ↑ กระโดด     R เริ่มใหม่"
+
+[node name="StateLabel" type="Label" parent="UI" unique_id=2067673548]
+offset_left = 390.0
+offset_top = 45.0
+offset_right = 890.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 34
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI" unique_id=1006829030]
+visible = false
+offset_left = 560.0
+offset_top = 395.0
+offset_right = 720.0
+offset_bottom = 447.0
+theme_override_font_sizes/font_size = 22
+text = "Restart"

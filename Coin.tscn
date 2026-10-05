@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+[sub_resource type="SphereMesh" id="coin_mesh"]
+radius = 0.37
+height = 0.74
+[sub_resource type="StandardMaterial3D" id="coin_mat"]
+albedo_color = Color(1, 0.898, 0.361, 1)
+emission_enabled = true
+emission = Color(1, 0.898, 0.361, 1)
+emission_energy_multiplier = 2.0
+[node name="Coin" type="Node3D"]
+[node name="CoinMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("coin_mesh")
+material_override = SubResource("coin_mat")
